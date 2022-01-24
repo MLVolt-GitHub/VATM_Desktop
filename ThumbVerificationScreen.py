@@ -6,70 +6,78 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
 from kivy.uix.vkeyboard import VKeyboard
 import keyboard
-
-from CustomRecept import CustomRecept
 from Widgets.CustomButton import CustomButton
 
 
-class EnterPin(Screen):
+class ThumbVerificationScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.name = 'enter_pin_screen'
+        self.name = 'thumb_verification_screen'
         self.kbd = VKeyboard(pos_hint={"center_x": 0.5, "center_y": 0.21}, on_key_up=self.keyup)
+
 
         self.Vatmlogo = Image(
             source="Assets/vatm_logo.png",
             size_hint_x=0.2,
             size_hint_y=0.2,
-            pos_hint={"center_x":0.5, "center_y":0.9})
+            pos_hint={"center_x": 0.5, "center_y": 0.9})
 
         self.homeButton = MDIconButton(icon="Assets/home_icon.png",
                                        pos_hint={"center_x": 0.03, "center_y": 0.95},
                                        on_press=self.onHomeButtonPressed)
 
-        self.enterPinLabel = MDLabel(text="ENTER PIN",
+        self.thumbVerificationLabel = MDLabel(text="Thumb Verification",
                                         pos_hint={"center_x": 0.5, "center_y": 0.83},
                                         halign="center",
                                         font_style="H5")
 
-        self.pinStatusLabel = MDLabel(text="status",
+        self.thumbVerificationStatusLabel = MDLabel(text="status",
                                          pos_hint={"center_x": 0.5, "center_y": 0.79},
                                          halign="center",
                                          font_style="Subtitle1")
 
-        self.enterPinTextField = MDTextField(mode='rectangle',
-                                                hint_text="Enter PIN Here",
+        self.enterUidTextField = MDTextField(mode='rectangle',
+                                                hint_text="Enter Your Unique Id",
                                                 pos_hint={"center_x": 0.5, "center_y": 0.6},
-                                                size_hint=(0.5, None))
+                                                size_hint=(0.5, None)
+                                                )
 
-        self.proceedButton = CustomButton(text="Proceed",
-                                           font_size="17sp",
-                                           size_hint=(0.3, 0.06),
-                                           md_bg_color=(0.996, 0.447, 0.180, 1),
-                                           pos_hint={"center_x": 0.5, "center_y": 0.5},
-                                           )
+        self.verifyButton = CustomButton(text="Verify Now",
+                                          font_size="17sp",
+                                          size_hint=(0.3, 0.06),
+                                          md_bg_color=(0.996, 0.447, 0.180, 1),
+                                          pos_hint={"center_x": 0.5, "center_y": 0.5}
+                                          )
 
-        self.proceedButton.bind(on_release=self.onProceedButtonPressed)
+
+        self.verifyButton.bind(on_release=self.onVerifyButtonPressed)
 
         self.add_widget(self.Vatmlogo)
         self.add_widget(self.homeButton)
-        self.add_widget(self.enterPinLabel)
-        self.add_widget(self.pinStatusLabel)
-        self.add_widget(self.enterPinTextField)
-        self.add_widget(self.proceedButton)
+        self.add_widget(self.thumbVerificationStatusLabel)
+        self.add_widget(self.thumbVerificationLabel)
+        self.add_widget(self.enterUidTextField)
+        self.add_widget(self.verifyButton)
         self.add_widget(self.kbd)
+
 
     def keyup(self, kbd, keycode, *args):
         if isinstance(keycode, tuple):
             keycode = keycode[1]
         keyboard.press_and_release(keycode)
 
-    def onProceedButtonPressed(self, instance):
-        amount=self.manager.get_screen('enter_withdraw_amount_screen').enterAmountTextField.text
-        CustomRecept("NuLL", "Null", "NUll", amount, "Null")
+    def onVerifyButtonPressed(self, instance):
+        Clock.schedule_once(self.switchToAllOptionScreen, 0.3)
 
 
 
     def onHomeButtonPressed(self, instance):
+        print("home button pressed")
         self.manager.transition.direction = 'right'
         self.manager.current='home_screen'
+
+
+
+    def switchToAllOptionScreen(self, dt):
+        self.manager.transition.direction = 'left'
+        self.manager.current = 'all_option_screen'

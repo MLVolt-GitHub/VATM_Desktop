@@ -110,7 +110,7 @@ class AllOptionScreen(Screen):
 
     def switchToRtgsScreen(self, dt):
         self.manager.transition.direction = 'left'
-        self.manager.current = 'rtgs_screen'
+        self.manager.current = 'rtgs_via_account_no_screen'
 
     def switchToPinChangeScreen(self, dt):
         self.manager.transition.direction = 'left'

@@ -4,6 +4,8 @@ from kivy.uix.screenmanager import Screen
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
+from kivy.uix.vkeyboard import VKeyboard
+import keyboard
 
 from Widgets.CustomButton import CustomButton
 
@@ -12,6 +14,8 @@ class OtpSendScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.name = 'otp_send_screen'
+        self.kbd = VKeyboard(pos_hint={"center_x": 0.5, "center_y": 0.21}, on_key_up=self.keyup)
+
 
         self.Vatmlogo = Image(
             source="Assets/vatm_logo.png",
@@ -47,6 +51,7 @@ class OtpSendScreen(Screen):
 
         self.sendOtpButton.bind(on_release=self.onSendOtpButtonPressed)
 
+        self.add_widget(self.kbd)
         self.add_widget(self.Vatmlogo)
         self.add_widget(self.homeButton)
         self.add_widget(self.otpSendLabel)
@@ -54,6 +59,10 @@ class OtpSendScreen(Screen):
         self.add_widget(self.enterMobileNoTextField)
         self.add_widget(self.sendOtpButton)
 
+    def keyup(self, kbd, keycode, *args):
+        if isinstance(keycode, tuple):
+            keycode = keycode[1]
+        keyboard.press_and_release(keycode)
 
     def onSendOtpButtonPressed(self, instance):
         Clock.schedule_once(self.switchToEnterOtpScreen, 0.3)

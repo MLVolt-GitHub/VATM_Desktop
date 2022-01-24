@@ -3,7 +3,8 @@ from kivy.uix.screenmanager import Screen
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
-
+from kivy.uix.vkeyboard import VKeyboard
+import keyboard
 from Widgets.CustomButton import CustomButton
 
 
@@ -11,6 +12,7 @@ class PinChangeScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.name = 'pin_change_screen'
+        self.kbd = VKeyboard(pos_hint={"center_x": 0.5, "center_y": 0.21}, on_key_up=self.keyup)
 
         self.Vatmlogo = Image(
             source="Assets/vatm_logo.png",
@@ -63,7 +65,13 @@ class PinChangeScreen(Screen):
         self.add_widget(self.enterNewPinTextField)
         self.add_widget(self.confirmNewPinTextField)
         self.add_widget(self.submitButton)
+        self.add_widget(self.kbd)
 
+
+    def keyup(self, kbd, keycode, *args):
+        if isinstance(keycode, tuple):
+            keycode = keycode[1]
+        keyboard.press_and_release(keycode)
 
     def onHomeButtonPressed(self, instance):
         self.manager.transition.direction = 'right'
