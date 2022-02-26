@@ -4,7 +4,7 @@ from Widgets.CustomButton import CustomButton
 from kivy.clock import Clock
 
 from kivymd.uix.button import MDIconButton
-
+from RequiredFuns import RequiredFuns
 from Widgets.CustomClock import CustomClock
 
 
@@ -42,6 +42,11 @@ class HomeScreen(Screen):
         self.add_widget(self.fundTransferViaOtpButton)
         self.add_widget(self.fundTransferViaThumbImpressionButton)
         self.add_widget(self.cClock)
+
+        RequiredFuns().resetLocalCredentials()
+
+
+
 
 
     def onFundTransferViaOtpButtonPressed(self, instance):

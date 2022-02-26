@@ -13,32 +13,32 @@ class ThumbVerificationScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.name = 'thumb_verification_screen'
-        self.kbd = VKeyboard(pos_hint={"center_x": 0.5, "center_y": 0.21}, on_key_up=self.keyup)
+        self.kbd = VKeyboard(pos_hint={"center_x": 0.5, "center_y": 0.31}, on_key_up=self.keyup)
 
 
         self.Vatmlogo = Image(
             source="Assets/vatm_logo.png",
             size_hint_x=0.2,
             size_hint_y=0.2,
-            pos_hint={"center_x": 0.5, "center_y": 0.9})
+            pos_hint={"center_x": 0.89, "center_y": 0.83})
 
         self.homeButton = MDIconButton(icon="Assets/home_icon.png",
-                                       pos_hint={"center_x": 0.03, "center_y": 0.95},
+                                       pos_hint={"center_x": 0.03, "center_y": 0.83},
                                        on_press=self.onHomeButtonPressed)
 
         self.thumbVerificationLabel = MDLabel(text="Thumb Verification",
-                                        pos_hint={"center_x": 0.5, "center_y": 0.83},
+                                        pos_hint={"center_x": 0.5, "center_y": 0.85},
                                         halign="center",
                                         font_style="H5")
 
         self.thumbVerificationStatusLabel = MDLabel(text="status",
-                                         pos_hint={"center_x": 0.5, "center_y": 0.79},
+                                         pos_hint={"center_x": 0.5, "center_y": 0.81},
                                          halign="center",
                                          font_style="Subtitle1")
 
         self.enterUidTextField = MDTextField(mode='rectangle',
                                                 hint_text="Enter Your Unique Id",
-                                                pos_hint={"center_x": 0.5, "center_y": 0.6},
+                                                pos_hint={"center_x": 0.5, "center_y": 0.65},
                                                 size_hint=(0.5, None)
                                                 )
 
@@ -46,7 +46,7 @@ class ThumbVerificationScreen(Screen):
                                           font_size="17sp",
                                           size_hint=(0.3, 0.06),
                                           md_bg_color=(0.996, 0.447, 0.180, 1),
-                                          pos_hint={"center_x": 0.5, "center_y": 0.5}
+                                          pos_hint={"center_x": 0.5, "center_y": 0.55}
                                           )
 
 

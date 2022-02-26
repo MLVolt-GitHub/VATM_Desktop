@@ -2,6 +2,7 @@ from kivy.uix.image import Image
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.label import MDLabel
 from kivy.clock import Clock
+from RequiredFuns import RequiredFuns
 
 class StatusScreen(Screen):
     def __init__(self, **kwargs):
@@ -12,7 +13,7 @@ class StatusScreen(Screen):
             source="Assets/vatm_logo.png",
             size_hint_x=0.2,
             size_hint_y=0.2,
-            pos_hint={"center_x": 0.5, "center_y": 0.9})
+            pos_hint={"center_x": 0.5, "center_y": 0.83})
 
         self.statusLabel = MDLabel(text="Thanks for your request",
                                    pos_hint={"center_x": 0.5, "center_y": 0.5},
@@ -22,7 +23,4 @@ class StatusScreen(Screen):
         self.add_widget(self.Vatmlogo)
         self.add_widget(self.statusLabel)
 
-
-    def nextScreen(self, f):
-        Clock.schedule_once(f, 3)
 

@@ -3,7 +3,7 @@ from kivy.uix.image import Image
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.label import MDLabel
-
+from RequiredFuns import RequiredFuns
 from Widgets.CustomButton import CustomButton
 
 class BankingScreen(Screen):
@@ -15,14 +15,14 @@ class BankingScreen(Screen):
             source="Assets/vatm_logo.png",
             size_hint_x=0.2,
             size_hint_y=0.2,
-            pos_hint={"center_x":0.5, "center_y":0.9})
+            pos_hint={"center_x":0.89, "center_y":0.83})
 
         self.homeButton = MDIconButton(icon="Assets/home_icon.png",
-                                       pos_hint={"center_x": 0.03, "center_y": 0.95},
+                                       pos_hint={"center_x": 0.03, "center_y": 0.83},
                                        on_press=self.onHomeButtonPressed)
 
         self.bankingLabel = MDLabel(text="BANKING",
-                                   pos_hint={"center_x": 0.5, "center_y": 0.83},
+                                   pos_hint={"center_x": 0.5, "center_y": 0.85},
                                    halign="center",
                                    font_style="H5")
 
@@ -96,10 +96,16 @@ class BankingScreen(Screen):
 
 
     def switchToStatusScreen(self, dt):
+        self.manager.get_screen("status_screen").statusLabel.text="Thanks for your request."
         self.manager.transition.direction = 'left'
         self.manager.current = 'status_screen'
-        self.manager.get_screen('status_screen').nextScreen(self.onHomeButtonPressed)
+        Clock.schedule_once(self.moveToHome, 3)
+        #self.manager.get_screen('status_screen').nextScreen(self.onHomeButtonPressed)
 
     def onHomeButtonPressed(self, instance):
+        self.manager.transition.direction = 'right'
+        self.manager.current='home_screen'
+
+    def moveToHome(self, dt):
         self.manager.transition.direction = 'right'
         self.manager.current='home_screen'

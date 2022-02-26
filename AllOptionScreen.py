@@ -13,10 +13,10 @@ class AllOptionScreen(Screen):
             source="Assets/vatm_logo.png",
             size_hint_x=0.2,
             size_hint_y=0.2,
-            pos_hint={"center_x":0.5, "center_y":0.9})
+            pos_hint={"center_x":0.5, "center_y":0.83})
 
         self.homeButton = MDIconButton(icon="Assets/home_icon.png",
-                                       pos_hint={"center_x": 0.03, "center_y": 0.95},
+                                       pos_hint={"center_x": 0.03, "center_y": 0.83},
                                        on_press=self.onHomeButtonPressed)
 
         self.bankingButton = CustomButton(text="BANKING",
@@ -118,7 +118,7 @@ class AllOptionScreen(Screen):
 
     def switchToWithdrawScreen(self, dt):
         self.manager.transition.direction = 'left'
-        self.manager.current = 'enter_withdraw_amount_screen'
+        self.manager.current = 'bank_selection_screen'
 
     def switchToBenificeryTransferScreen(self, dt):
         self.manager.transition.direction = 'left'

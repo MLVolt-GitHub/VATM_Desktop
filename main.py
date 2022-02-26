@@ -17,6 +17,7 @@ from EnterPinScreen import EnterPin
 from OtpSendScreen import OtpSendScreen
 from EnterOtpScreen import EnterOtpScreen
 from ThumbVerificationScreen import ThumbVerificationScreen
+from BankSelectionScreen import BankSelectionScreen
 
 
 class MyFirstApp(MDApp):
@@ -35,12 +36,10 @@ class MyFirstApp(MDApp):
             self.sm.add_widget(RtgsViaUpiScreen())
             self.sm.add_widget(BenificeryTransferScreen())
             self.sm.add_widget(PinChangeScreen())
+            self.sm.add_widget(BankSelectionScreen())
             self.sm.add_widget(EnterWithdrawAmountScreen())
             self.sm.add_widget(EnterPin())
             self.sm.add_widget(ThumbVerificationScreen())
-
-
-
 
             return self.sm
         except Exception as e:
